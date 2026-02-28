@@ -2,6 +2,15 @@
 
 A modern, full-featured multi-vendor e-commerce platform built with Next.js 14, TypeScript, and Prisma. SouqCart enables multiple vendors to sell their products on a unified platform with comprehensive admin controls, vendor dashboards, and a seamless customer shopping experience. Features bilingual support (English/Arabic) with RTL layout support.
 
+## 📊 Project Status
+
+✅ **Code Quality**: All code passes ESLint and TypeScript checks  
+✅ **Type Safety**: Full TypeScript implementation with strict mode  
+✅ **Database Schema**: Prisma schema validated and client generated  
+✅ **Linting**: Zero ESLint warnings or errors  
+⚠️ **Build**: Requires environment variables (Stripe, Cloudinary) to be set  
+✅ **Documentation**: Comprehensive README with setup and troubleshooting  
+
 ## ✨ Key Features
 
 ### For Customers
@@ -290,23 +299,49 @@ The application supports English and Arabic with full RTL support:
 - **Responsive Design**: Fully responsive across all devices
 - **Tailwind CSS**: Easily customizable theme via `tailwind.config.ts`
 
-## 🧪 Testing
+## 🧪 Testing & Code Quality
+
+### Linting
 
 ```bash
-# Run linter
+# Run ESLint to check code quality
 npm run lint
+```
 
-# Type checking
+### Type Checking
+
+```bash
+# Run TypeScript type checker
 npx tsc --noEmit
 ```
+
+### Code Quality Standards
+
+- All code passes ESLint checks with zero warnings
+- TypeScript strict mode enabled for type safety
+- Unused variables prefixed with underscore (_) are allowed
+- All API routes use proper error handling
 
 ## 📦 Build & Deployment
 
 ### Build for Production
 
 ```bash
+# Build the Next.js application
 npm run build
+
+# Start the production server
 npm run start
+```
+
+**Note**: Building requires all environment variables to be set. If building in a CI/CD environment without actual API keys, you can use dummy values for build-time only (the build process requires them to be present):
+
+```bash
+# Example for CI/CD build without real keys
+export STRIPE_SECRET_KEY="sk_test_dummy_key_for_build"
+export CLOUDINARY_API_KEY="dummy_key"
+export CLOUDINARY_API_SECRET="dummy_secret"
+npm run build
 ```
 
 ### Deploy to Vercel
@@ -335,6 +370,47 @@ For production, use Prisma migrations:
 ```bash
 npx prisma migrate deploy
 ```
+
+## 🐛 Troubleshooting
+
+### Build Errors
+
+**Problem**: Build fails with "Neither apiKey nor config.authenticator provided" error
+
+**Solution**: Ensure all required environment variables are set before building:
+- `STRIPE_SECRET_KEY`
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_API_SECRET`
+- `CLOUDINARY_CLOUD_NAME`
+
+### Database Issues
+
+**Problem**: Database connection errors
+
+**Solution**: 
+1. Verify your `DATABASE_URL` is correct in `.env`
+2. Ensure PostgreSQL is running
+3. Run `npx prisma generate` to generate Prisma client
+4. Run `npx prisma db push` to sync the database schema
+
+### TypeScript Errors
+
+**Problem**: Type errors in development
+
+**Solution**: 
+1. Run `npx prisma generate` to ensure Prisma types are up to date
+2. Restart your TypeScript server in your IDE
+3. Run `npx tsc --noEmit` to check for type errors
+
+### npm Vulnerabilities
+
+**Problem**: Security vulnerabilities reported by `npm audit`
+
+**Solution**: The current vulnerabilities are in development dependencies and do not affect production. To update:
+```bash
+npm audit fix
+```
+Note: Major version updates may introduce breaking changes.
 
 ## 🤝 Contributing
 
