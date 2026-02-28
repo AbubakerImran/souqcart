@@ -141,7 +141,17 @@ npx prisma migrate deploy
 
 **Optional: Seed the database with sample data**
 
-To seed your database, you'll need to create a seed script first. Add a `prisma/seed.ts` file and configure it in `package.json`. See [Prisma seeding documentation](https://www.prisma.io/docs/guides/database/seed-database) for details.
+To seed your database, you'll need to create a seed script first. Add a `prisma/seed.ts` file and configure it in `package.json`:
+
+```json
+{
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  }
+}
+```
+
+See [Prisma seeding documentation](https://www.prisma.io/docs/guides/database/seed-database) for details.
 
 ### 5. Run the Development Server
 
@@ -228,8 +238,14 @@ The platform supports three user roles:
 ## 🔌 API Endpoints
 
 ### Authentication
-- `/api/auth/[...nextauth]` - NextAuth.js authentication endpoints (signin, signout, session, etc.)
-- User signup is handled through the authentication flow
+The application uses NextAuth.js for authentication. Available routes include:
+- `/api/auth/signin` - Sign in page
+- `/api/auth/signout` - Sign out
+- `/api/auth/session` - Get current session
+- `/api/auth/callback/[provider]` - OAuth callback (e.g., Google)
+- `/api/auth/csrf` - CSRF token
+
+See the [NextAuth.js documentation](https://next-auth.js.org/getting-started/rest-api) for complete API reference.
 
 ### Products
 - `GET /api/products` - List products (with filters)
