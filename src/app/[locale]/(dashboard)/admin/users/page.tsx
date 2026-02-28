@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
 import { Card, CardContent } from "@/components/ui/card"
@@ -46,6 +47,13 @@ export default function AdminUsersPage() {
   const tCommon = useTranslations("common")
   const pathname = usePathname()
   const locale = pathname.split("/")[1] || "en"
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const filteredUsers = mockUsers.filter((user) =>
+    searchQuery === "" ||
+    user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    user.email.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   return (
     <div className="space-y-6">
@@ -55,7 +63,7 @@ export default function AdminUsersPage() {
 
       <div className="relative max-w-sm">
         <Search className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input placeholder={tCommon("search") + "..."} className="ps-9" />
+        <Input placeholder={tCommon("search") + "..."} className="ps-9" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
       </div>
 
       <Card>
@@ -72,7 +80,7 @@ export default function AdminUsersPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockUsers.map((user) => (
+              {filteredUsers.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell>
                     <div className="flex items-center gap-3">
