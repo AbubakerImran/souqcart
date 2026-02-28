@@ -37,7 +37,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     }
 
     return NextResponse.json({ success: true, data: user })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to fetch user" }, { status: 500 })
   }
 }
@@ -62,7 +62,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     })
 
     return NextResponse.json({ success: true, data: user })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to update user" }, { status: 500 })
   }
 }

@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
         discount: Math.round(discount * 100) / 100,
       },
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to validate coupon" }, { status: 500 })
   }
 }

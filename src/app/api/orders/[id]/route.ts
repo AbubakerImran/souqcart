@@ -39,7 +39,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     }
 
     return NextResponse.json({ success: true, data: order })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to fetch order" }, { status: 500 })
   }
 }
@@ -73,7 +73,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     })
 
     return NextResponse.json({ success: true, data: updated })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to update order" }, { status: 500 })
   }
 }

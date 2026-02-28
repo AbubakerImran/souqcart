@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
-import { Separator } from "@/components/ui/separator"
 import { Plus, Trash2, Upload } from "lucide-react"
 import { toast } from "sonner"
 
@@ -23,7 +22,6 @@ interface Variant {
 
 export default function NewProductPage() {
   const t = useTranslations("vendor")
-  const tCommon = useTranslations("common")
   const pathname = usePathname()
   const locale = pathname.split("/")[1] || "en"
   const router = useRouter()
