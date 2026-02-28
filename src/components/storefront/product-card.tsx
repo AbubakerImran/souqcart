@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { Heart, ShoppingCart, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -45,9 +46,11 @@ export function ProductCard({ product }: { product: ProductData }) {
       {/* Image */}
       <div className="aspect-square overflow-hidden rounded-t-xl bg-muted">
         {product.image ? (
-          <img
+          <Image
             src={product.image}
             alt={product.name}
+            width={400}
+            height={400}
             className="h-full w-full object-cover transition group-hover:scale-105"
           />
         ) : (

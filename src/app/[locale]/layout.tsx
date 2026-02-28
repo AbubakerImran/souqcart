@@ -1,16 +1,9 @@
-import { Inter, Noto_Sans_Arabic } from "next/font/google"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages } from "next-intl/server"
 import { ThemeProvider } from "@/components/shared/theme-provider"
 import { AuthProvider } from "@/components/shared/auth-provider"
 import { Toaster } from "@/components/ui/toaster"
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const notoArabic = Noto_Sans_Arabic({
-  subsets: ["arabic"],
-  variable: "--font-arabic",
-})
 
 const locales = ["en", "ar"]
 
@@ -29,9 +22,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={isRTL ? "rtl" : "ltr"} suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${notoArabic.variable} ${
+        className={`${
           isRTL ? "font-arabic" : "font-sans"
-        }`}
+        } antialiased`}
       >
         <AuthProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
