@@ -29,7 +29,7 @@ export async function GET() {
     })
 
     return NextResponse.json({ success: true, data: wishlist })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to fetch wishlist" }, { status: 500 })
   }
 }
@@ -86,7 +86,7 @@ export async function DELETE(req: NextRequest) {
     })
 
     return NextResponse.json({ success: true, data: { message: "Removed from wishlist" } })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to remove from wishlist" }, { status: 500 })
   }
 }

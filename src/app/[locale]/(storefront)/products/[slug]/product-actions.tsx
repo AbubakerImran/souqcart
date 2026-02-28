@@ -59,6 +59,9 @@ export function ProductActions({ product }: ProductActionsProps) {
         name: product.name,
         price: product.price,
         image: product.image,
+        vendorId: product.vendorId,
+        vendorName: product.vendorName,
+        stock: product.stock,
       })
       toast.success(t("addToWishlist"))
     }

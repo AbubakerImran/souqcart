@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
       data: products,
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Search failed" }, { status: 500 })
   }
 }

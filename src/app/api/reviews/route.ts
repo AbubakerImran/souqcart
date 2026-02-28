@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
       data: reviews,
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to fetch reviews" }, { status: 500 })
   }
 }

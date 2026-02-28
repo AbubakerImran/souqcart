@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
     const status = searchParams.get("status")
     const skip = (page - 1) * limit
 
-    let where: Record<string, unknown> = {}
+    const where: Record<string, unknown> = {}
 
     if (session.user.role === "CUSTOMER") {
       where.userId = session.user.id
@@ -75,7 +75,7 @@ export async function GET(req: NextRequest) {
       data: orders,
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to fetch orders" }, { status: 500 })
   }
 }
@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
     })
 
     return NextResponse.json({ success: true, data: order }, { status: 201 })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to create order" }, { status: 500 })
   }
 }

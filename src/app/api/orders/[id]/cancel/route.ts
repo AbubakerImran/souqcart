@@ -30,7 +30,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
     })
 
     return NextResponse.json({ success: true, data: updated })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to cancel order" }, { status: 500 })
   }
 }

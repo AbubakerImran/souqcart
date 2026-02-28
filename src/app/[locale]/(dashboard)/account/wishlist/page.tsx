@@ -21,12 +21,15 @@ export default function WishlistPage() {
 
   const handleAddToCart = (item: typeof items[0]) => {
     addToCart({
-      id: item.id,
+      id: `${item.productId}-default`,
       productId: item.productId,
       name: item.name,
       price: item.price,
       image: item.image,
       quantity: 1,
+      vendorId: item.vendorId,
+      vendorName: item.vendorName,
+      stock: item.stock,
     })
     toast.success(tProduct("addToCart"))
   }

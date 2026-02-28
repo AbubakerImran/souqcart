@@ -8,6 +8,9 @@ interface WishlistItem {
   nameAr?: string
   price: number
   image: string
+  vendorId: string
+  vendorName: string
+  stock: number
 }
 
 interface WishlistState {

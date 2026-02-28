@@ -32,7 +32,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     }
 
     return NextResponse.json({ success: true, data: vendor })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to fetch vendor" }, { status: 500 })
   }
 }
@@ -65,7 +65,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     })
 
     return NextResponse.json({ success: true, data: updated })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to update vendor" }, { status: 500 })
   }
 }

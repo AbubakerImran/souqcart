@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
 
     // COD order
     return NextResponse.json({ success: true, data: { orderId: order.id } }, { status: 201 })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to process checkout" }, { status: 500 })
   }
 }

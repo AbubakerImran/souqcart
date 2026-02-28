@@ -31,7 +31,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     }
 
     return NextResponse.json({ success: true, data: category })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to fetch category" }, { status: 500 })
   }
 }
@@ -56,7 +56,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     })
 
     return NextResponse.json({ success: true, data: category })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to update category" }, { status: 500 })
   }
 }
@@ -71,7 +71,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     await prisma.category.delete({ where: { id: params.id } })
 
     return NextResponse.json({ success: true, data: { message: "Category deleted" } })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to delete category" }, { status: 500 })
   }
 }

@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
       data: vendors,
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to fetch vendors" }, { status: 500 })
   }
 }

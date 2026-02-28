@@ -29,7 +29,7 @@ export async function GET() {
     })
 
     return NextResponse.json({ success: true, data: addresses })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to fetch addresses" }, { status: 500 })
   }
 }
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     })
 
     return NextResponse.json({ success: true, data: address }, { status: 201 })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to create address" }, { status: 500 })
   }
 }

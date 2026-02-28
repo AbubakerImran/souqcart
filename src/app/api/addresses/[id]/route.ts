@@ -47,7 +47,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     })
 
     return NextResponse.json({ success: true, data: updated })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to update address" }, { status: 500 })
   }
 }
@@ -67,7 +67,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     await prisma.address.delete({ where: { id: params.id } })
 
     return NextResponse.json({ success: true, data: { message: "Address deleted" } })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to delete address" }, { status: 500 })
   }
 }

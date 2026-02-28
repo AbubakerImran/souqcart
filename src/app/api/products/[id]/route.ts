@@ -47,7 +47,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     await prisma.product.update({ where: { id: params.id }, data: { views: { increment: 1 } } })
 
     return NextResponse.json({ success: true, data: product })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to fetch product" }, { status: 500 })
   }
 }
@@ -83,7 +83,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     })
 
     return NextResponse.json({ success: true, data: updated })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to update product" }, { status: 500 })
   }
 }
@@ -109,7 +109,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     await prisma.product.delete({ where: { id: params.id } })
 
     return NextResponse.json({ success: true, data: { message: "Product deleted" } })
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json({ success: false, error: "Failed to delete product" }, { status: 500 })
   }
 }
