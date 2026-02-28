@@ -140,10 +140,8 @@ npx prisma migrate deploy
 ```
 
 **Optional: Seed the database with sample data**
-```bash
-# Create a seed script if needed
-npx prisma db seed
-```
+
+To seed your database, you'll need to create a seed script first. Add a `prisma/seed.ts` file and configure it in `package.json`. See [Prisma seeding documentation](https://www.prisma.io/docs/guides/database/seed-database) for details.
 
 ### 5. Run the Development Server
 
@@ -230,8 +228,8 @@ The platform supports three user roles:
 ## 🔌 API Endpoints
 
 ### Authentication
-- `POST /api/auth/signup` - Register new user
-- `POST /api/auth/signin` - Sign in user
+- `/api/auth/[...nextauth]` - NextAuth.js authentication endpoints (signin, signout, session, etc.)
+- User signup is handled through the authentication flow
 
 ### Products
 - `GET /api/products` - List products (with filters)
