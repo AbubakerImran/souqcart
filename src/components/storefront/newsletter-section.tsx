@@ -32,7 +32,7 @@ export function NewsletterSection() {
 
         {submitted ? (
           <p className="font-medium text-primary">
-            Thank you for subscribing! 🎉
+            {t("subscribeSuccess")}
           </p>
         ) : (
           <form

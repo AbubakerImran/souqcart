@@ -43,7 +43,17 @@
     "subscribe": "Subscribe",
     "vendorCTATitle": "Start Selling on SouqCart",
     "vendorCTASubtitle": "Join thousands of successful vendors and reach millions of customers across the region.",
-    "vendorCTAButton": "Open Your Store"
+    "vendorCTAButton": "Open Your Store",
+    "subscribeSuccess": "Thank you for subscribing! 🎉",
+    "footerDescription": "Your premier multi-vendor e-commerce platform. Discover amazing products from trusted vendors.",
+    "dealsSubtitle": "Up to 50% off on selected items",
+    "hours": "Hours",
+    "minutes": "Min",
+    "seconds": "Sec",
+    "productsComing": "Products coming soon",
+    "productsComingSub": "Check back later for featured products",
+    "quickLinks": "Quick Links",
+    "customerService": "Customer Service"
   },
   "product": {
     "addToCart": "Add to Cart",

@@ -47,7 +47,8 @@ async function getHomeData() {
         image: c.image,
       })),
     }
-  } catch {
+  } catch (error) {
+    console.error("Failed to fetch home data:", error)
     return { products: [], categories: [] }
   }
 }
@@ -73,14 +74,14 @@ export default async function HomePage() {
         <div className="rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 p-8 text-center text-white">
           <h3 className="mb-2 text-3xl font-bold">{t("todaysDeals")}</h3>
           <p className="mb-6 text-white/90">
-            Up to 50% off on selected items
+            {t("dealsSubtitle")}
           </p>
           <div className="mb-6 flex items-center justify-center gap-4">
             {["12", "34", "56"].map((val, i) => (
               <div key={i} className="rounded-lg bg-white/20 px-4 py-2 backdrop-blur">
                 <span className="text-2xl font-bold">{val}</span>
                 <span className="block text-xs">
-                  {i === 0 ? "Hours" : i === 1 ? "Min" : "Sec"}
+                  {i === 0 ? t("hours") : i === 1 ? t("minutes") : t("seconds")}
                 </span>
               </div>
             ))}

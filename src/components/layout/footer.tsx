@@ -29,14 +29,13 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Your premier multi-vendor e-commerce platform. Discover amazing
-              products from trusted vendors.
+              {tHome("footerDescription")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="font-semibold">Quick Links</h3>
+            <h3 className="font-semibold">{tHome("quickLinks")}</h3>
             <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
               <Link href={`/${currentLocale}/products`} className="hover:text-foreground">
                 {t("products")}
@@ -55,7 +54,7 @@ export function Footer() {
 
           {/* Customer Service */}
           <div className="space-y-4">
-            <h3 className="font-semibold">Customer Service</h3>
+            <h3 className="font-semibold">{tHome("customerService")}</h3>
             <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
               <Link href={`/${currentLocale}/account`} className="hover:text-foreground">
                 {t("account")}

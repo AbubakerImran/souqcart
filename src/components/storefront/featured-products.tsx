@@ -43,10 +43,10 @@ export function FeaturedProducts({ products }: { products: Product[] }) {
         <div className="flex flex-col items-center justify-center rounded-xl border border-dashed py-16">
           <Package className="mb-4 h-12 w-12 text-muted-foreground" />
           <p className="text-lg font-medium text-muted-foreground">
-            Products coming soon
+            {t("productsComing")}
           </p>
           <p className="text-sm text-muted-foreground">
-            Check back later for featured products
+            {t("productsComingSub")}
           </p>
         </div>
       )}
