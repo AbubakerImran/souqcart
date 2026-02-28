@@ -42,7 +42,7 @@ export default function VendorProductsPage() {
   const [searchQuery, setSearchQuery] = useState("")
 
   const filteredProducts = mockProducts.filter((p) =>
-    searchQuery === "" || p.name.toLowerCase().includes(searchQuery.toLowerCase())
+    p.name.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
   return (

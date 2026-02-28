@@ -50,7 +50,6 @@ export default function AdminUsersPage() {
   const [searchQuery, setSearchQuery] = useState("")
 
   const filteredUsers = mockUsers.filter((user) =>
-    searchQuery === "" ||
     user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     user.email.toLowerCase().includes(searchQuery.toLowerCase())
   )
