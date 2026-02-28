@@ -69,6 +69,8 @@ export default function EditProductPage() {
     )
   }
 
+  // Note: This is a mock handler for demonstration purposes
+  // In production, this would call an API to update the product
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     toast.success(tCommon("success"))

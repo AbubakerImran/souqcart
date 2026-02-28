@@ -21,6 +21,7 @@ export default function WishlistPage() {
 
   const handleAddToCart = (item: typeof items[0]) => {
     addToCart({
+      // Use 'default' suffix for items without variants
       id: `${item.productId}-default`,
       productId: item.productId,
       name: item.name,

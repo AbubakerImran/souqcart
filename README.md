@@ -406,11 +406,22 @@ npx prisma migrate deploy
 
 **Problem**: Security vulnerabilities reported by `npm audit`
 
-**Solution**: The current vulnerabilities are in development dependencies and do not affect production. To update:
+**Current Status**: 
+- There is 1 high severity vulnerability in Next.js 14.2.35
+- These affect Next.js self-hosted applications using Image Optimizer
+- Vulnerability: DoS via remotePatterns configuration and HTTP request deserialization
+
+**Solution**: 
 ```bash
-npm audit fix
+# To fix (requires upgrading to Next.js 15+, which is a breaking change):
+npm install next@latest
 ```
-Note: Major version updates may introduce breaking changes.
+
+**Notes**: 
+- The vulnerabilities primarily affect self-hosted deployments
+- If deploying to Vercel, these vulnerabilities are mitigated by their infrastructure
+- Upgrading to Next.js 15 may require code changes for compatibility
+- For immediate mitigation, avoid using Image Optimizer remotePatterns feature in self-hosted environments
 
 ## 🤝 Contributing
 
