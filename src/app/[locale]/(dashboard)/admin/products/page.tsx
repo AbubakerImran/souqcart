@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
@@ -38,6 +39,12 @@ export default function AdminProductsPage() {
   const tCommon = useTranslations("common")
   const pathname = usePathname()
   const locale = pathname.split("/")[1] || "en"
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const filteredProducts = mockProducts.filter((p) =>
+    p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    p.vendor.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   return (
     <div className="space-y-6">
@@ -47,7 +54,7 @@ export default function AdminProductsPage() {
 
       <div className="relative max-w-sm">
         <Search className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input placeholder={tCommon("search") + "..."} className="ps-9" />
+        <Input placeholder={tCommon("search") + "..."} className="ps-9" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
       </div>
 
       <Card>
@@ -64,7 +71,7 @@ export default function AdminProductsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockProducts.map((product) => (
+              {filteredProducts.map((product) => (
                 <TableRow key={product.id}>
                   <TableCell>
                     <div className="relative h-10 w-10 overflow-hidden rounded-md bg-muted">

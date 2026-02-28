@@ -1,7 +1,8 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { usePathname } from "next/navigation"
+import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Star } from "lucide-react"
 import { formatDate } from "@/lib/utils"
@@ -68,8 +69,7 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function VendorReviewsPage() {
   const t = useTranslations("vendor")
-  const pathname =
-    typeof window !== "undefined" ? window.location.pathname : ""
+  const pathname = usePathname()
   const locale = pathname.split("/")[1] || "en"
 
   return (

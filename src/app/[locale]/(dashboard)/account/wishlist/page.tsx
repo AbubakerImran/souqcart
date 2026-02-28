@@ -27,6 +27,9 @@ export default function WishlistPage() {
       price: item.price,
       image: item.image,
       quantity: 1,
+      vendorId: "",
+      vendorName: "",
+      stock: 99,
     })
     toast.success(tProduct("addToCart"))
   }

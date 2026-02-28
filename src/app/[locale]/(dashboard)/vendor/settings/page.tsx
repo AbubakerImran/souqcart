@@ -13,6 +13,13 @@ import { toast } from "sonner"
 export default function VendorSettingsPage() {
   const t = useTranslations("vendor")
   const tCommon = useTranslations("common")
+  const [storeName, setStoreName] = useState("TechStore")
+  const [storeNameAr, setStoreNameAr] = useState("متجر التقنية")
+  const [storeDesc, setStoreDesc] = useState("Premium tech accessories and gadgets for everyday use.")
+  const [storeDescAr, setStoreDescAr] = useState("إكسسوارات وأجهزة تقنية متميزة للاستخدام اليومي.")
+  const [phone, setPhone] = useState("+966 50 123 4567")
+  const [email, setEmail] = useState("store@techstore.com")
+  const [address, setAddress] = useState("123 Tech Avenue, Riyadh, Saudi Arabia")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -34,24 +41,26 @@ export default function VendorSettingsPage() {
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>{t("storeName")}</Label>
-                <Input defaultValue="TechStore" />
+                <Input value={storeName} onChange={(e) => setStoreName(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label>{t("storeNameAr")}</Label>
-                <Input defaultValue="متجر التقنية" dir="rtl" />
+                <Input value={storeNameAr} onChange={(e) => setStoreNameAr(e.target.value)} dir="rtl" />
               </div>
             </div>
             <div className="space-y-2">
               <Label>{t("storeDesc")}</Label>
               <Textarea
-                defaultValue="Premium tech accessories and gadgets for everyday use."
+                value={storeDesc}
+                onChange={(e) => setStoreDesc(e.target.value)}
                 rows={4}
               />
             </div>
             <div className="space-y-2">
               <Label>{t("storeDescAr")}</Label>
               <Textarea
-                defaultValue="إكسسوارات وأجهزة تقنية متميزة للاستخدام اليومي."
+                value={storeDescAr}
+                onChange={(e) => setStoreDescAr(e.target.value)}
                 rows={4}
                 dir="rtl"
               />
@@ -95,16 +104,16 @@ export default function VendorSettingsPage() {
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <Label>{tCommon("phone")}</Label>
-                <Input defaultValue="+966 50 123 4567" />
+                <Input value={phone} onChange={(e) => setPhone(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label>{tCommon("email")}</Label>
-                <Input defaultValue="store@techstore.com" type="email" />
+                <Input value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
               </div>
             </div>
             <div className="space-y-2">
               <Label>{tCommon("address")}</Label>
-              <Input defaultValue="123 Tech Avenue, Riyadh, Saudi Arabia" />
+              <Input value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
           </CardContent>
         </Card>

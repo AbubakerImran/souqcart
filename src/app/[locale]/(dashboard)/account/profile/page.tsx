@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { Separator } from "@/components/ui/separator"
+
 import { toast } from "sonner"
 
 export default function ProfilePage() {
@@ -16,6 +16,9 @@ export default function ProfilePage() {
   const [name, setName] = useState("John Doe")
   const [phone, setPhone] = useState("+966 50 123 4567")
   const [langPref, setLangPref] = useState(false)
+  const [currentPw, setCurrentPw] = useState("")
+  const [newPw, setNewPw] = useState("")
+  const [confirmPw, setConfirmPw] = useState("")
 
   const handleSaveProfile = (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,7 +27,22 @@ export default function ProfilePage() {
 
   const handleChangePassword = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!currentPw || !newPw || !confirmPw) {
+      toast.error("Please fill in all password fields")
+      return
+    }
+    if (newPw !== confirmPw) {
+      toast.error("New password and confirmation do not match")
+      return
+    }
+    if (newPw.length < 6) {
+      toast.error("Password must be at least 6 characters")
+      return
+    }
     toast.success(tCommon("success"))
+    setCurrentPw("")
+    setNewPw("")
+    setConfirmPw("")
   }
 
   return (
@@ -62,15 +80,15 @@ export default function ProfilePage() {
           <form onSubmit={handleChangePassword} className="space-y-4">
             <div className="space-y-2">
               <Label>{t("currentPw")}</Label>
-              <Input type="password" />
+              <Input type="password" value={currentPw} onChange={(e) => setCurrentPw(e.target.value)} />
             </div>
             <div className="space-y-2">
               <Label>{t("newPw")}</Label>
-              <Input type="password" />
+              <Input type="password" value={newPw} onChange={(e) => setNewPw(e.target.value)} />
             </div>
             <div className="space-y-2">
               <Label>{t("confirmPw")}</Label>
-              <Input type="password" />
+              <Input type="password" value={confirmPw} onChange={(e) => setConfirmPw(e.target.value)} />
             </div>
             <Button type="submit">{t("saveChanges")}</Button>
           </form>

@@ -52,7 +52,7 @@ export async function GET(req: NextRequest) {
       data: users,
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to fetch users" }, { status: 500 })
   }
 }
@@ -77,7 +77,7 @@ export async function PUT(req: NextRequest) {
     })
 
     return NextResponse.json({ success: true, data: user })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to update user role" }, { status: 500 })
   }
 }

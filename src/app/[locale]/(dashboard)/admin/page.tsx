@@ -3,14 +3,7 @@
 import { useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+
 import { Users, Store, Package, ShoppingCart, DollarSign, Percent } from "lucide-react"
 import { formatPrice, formatDate } from "@/lib/utils"
 import { AdminChartsSection } from "./charts"

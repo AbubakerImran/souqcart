@@ -69,7 +69,7 @@ export default function EditProductPage() {
     )
   }
 
-  const handleSubmit = (e: React.FormEvent, asDraft: boolean) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     toast.success(tCommon("success"))
     router.push(`/${locale}/vendor/products`)
@@ -81,7 +81,7 @@ export default function EditProductPage() {
         <h1 className="text-2xl font-bold tracking-tight">{t("editProduct")}</h1>
       </div>
 
-      <form onSubmit={(e) => handleSubmit(e, !published)}>
+      <form onSubmit={handleSubmit}>
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6">
             <Card>

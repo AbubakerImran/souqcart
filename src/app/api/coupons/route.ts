@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
       data: coupons,
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to fetch coupons" }, { status: 500 })
   }
 }

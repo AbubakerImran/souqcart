@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/prisma"
-import { stripe } from "@/lib/stripe"
+import { getStripe } from "@/lib/stripe"
 import { z } from "zod"
 
 const checkoutItemSchema = z.object({
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     })
 
     if (paymentMethod === "stripe") {
-      const stripeSession = await stripe.checkout.sessions.create({
+      const stripeSession = await getStripe().checkout.sessions.create({
         mode: "payment",
         line_items: items.map(item => ({
           price_data: {
@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
 
     // COD order
     return NextResponse.json({ success: true, data: { orderId: order.id } }, { status: 201 })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to process checkout" }, { status: 500 })
   }
 }

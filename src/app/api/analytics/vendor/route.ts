@@ -69,7 +69,7 @@ export async function GET() {
         topProducts,
       },
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to fetch vendor analytics" }, { status: 500 })
   }
 }

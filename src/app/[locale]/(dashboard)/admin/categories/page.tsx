@@ -2,8 +2,7 @@
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -50,6 +49,8 @@ export default function AdminCategoriesPage() {
   const tCommon = useTranslations("common")
   const [categories, setCategories] = useState<Category[]>(mockCategories)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [editDialogOpen, setEditDialogOpen] = useState(false)
+  const [editingCategory, setEditingCategory] = useState<Category | null>(null)
 
   const handleAddCategory = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -65,6 +66,31 @@ export default function AdminCategoriesPage() {
     setCategories([...categories, newCategory])
     setDialogOpen(false)
     toast.success(tCommon("success"))
+  }
+
+  const handleEditCategory = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!editingCategory) return
+    const formData = new FormData(e.currentTarget)
+    setCategories(categories.map((c) =>
+      c.id === editingCategory.id
+        ? {
+            ...c,
+            nameEn: formData.get("nameEn") as string,
+            nameAr: formData.get("nameAr") as string,
+            slug: formData.get("slug") as string,
+            parent: (formData.get("parent") as string) || undefined,
+          }
+        : c
+    ))
+    setEditDialogOpen(false)
+    setEditingCategory(null)
+    toast.success(tCommon("success"))
+  }
+
+  const openEditDialog = (category: Category) => {
+    setEditingCategory(category)
+    setEditDialogOpen(true)
   }
 
   const handleDelete = (id: string) => {
@@ -140,7 +166,7 @@ export default function AdminCategoriesPage() {
                   <TableCell>{category.products}</TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-1">
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" onClick={() => openEditDialog(category)}>
                         <Pencil className="h-4 w-4" />
                       </Button>
                       <Button
@@ -159,6 +185,41 @@ export default function AdminCategoriesPage() {
           </Table>
         </CardContent>
       </Card>
+
+      {/* Edit Category Dialog */}
+      <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("editCategory")}</DialogTitle>
+          </DialogHeader>
+          {editingCategory && (
+            <form onSubmit={handleEditCategory} className="space-y-4">
+              <div className="space-y-2">
+                <Label>{t("categoryName")}</Label>
+                <Input name="nameEn" defaultValue={editingCategory.nameEn} required />
+              </div>
+              <div className="space-y-2">
+                <Label>{t("categoryNameAr")}</Label>
+                <Input name="nameAr" defaultValue={editingCategory.nameAr} dir="rtl" required />
+              </div>
+              <div className="space-y-2">
+                <Label>{t("categorySlug")}</Label>
+                <Input name="slug" defaultValue={editingCategory.slug} required />
+              </div>
+              <div className="space-y-2">
+                <Label>{t("parentCategory")}</Label>
+                <Input name="parent" defaultValue={editingCategory.parent || ""} placeholder="Optional parent category" />
+              </div>
+              <div className="flex justify-end gap-2">
+                <Button type="button" variant="outline" onClick={() => setEditDialogOpen(false)}>
+                  {tCommon("cancel")}
+                </Button>
+                <Button type="submit">{tCommon("save")}</Button>
+              </div>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

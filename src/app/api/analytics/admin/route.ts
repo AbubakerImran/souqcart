@@ -54,7 +54,7 @@ export async function GET() {
         recentOrders,
       },
     })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, error: "Failed to fetch analytics" }, { status: 500 })
   }
 }

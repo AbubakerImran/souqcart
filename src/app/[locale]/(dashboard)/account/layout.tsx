@@ -15,7 +15,7 @@ export default function AccountLayout({
             <CustomerSidebar />
           </div>
         </aside>
-        <main className="flex w-full flex-col overflow-hidden">
+        <main className="flex w-full flex-col overflow-auto">
           <div className="md:hidden mb-4 overflow-x-auto">
             <CustomerSidebar />
           </div>
